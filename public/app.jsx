@@ -1,3 +1,25 @@
+var GreeterMessage = React.createClass({
+    render: function () {
+        return (
+            <div>
+                <h1>some h1</h1>
+                <p>some paragraph</p>
+            </div>
+        );
+    }
+});
+
+var GreeterForm = React.createClass({
+    render: function () {
+        return (
+            <form>
+                <input type="text" ref="name"/>
+                <button>Set Name</button>
+            </form>
+        );
+    }
+});
+
 /*
  * creating a react component
  * the create class takes an object as the only param
@@ -53,10 +75,14 @@ var Greetter = React.createClass({
                 <h1>Hello {name}!</h1>
                 <p>{message}</p>
 
+                <GreeterMessage/>
+
                 <form onSubmit={this.onButtonClick}>
                     <input type="text" ref="name"/>
                     <button>Set Name</button>
                 </form>
+
+                <GreeterForm/>
             </div>
         );
     }
