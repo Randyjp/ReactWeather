@@ -17,18 +17,28 @@ var GreeterForm = React.createClass({
         e.preventDefault();
 
         var name = this.refs.name.value;
+        var message = this.refs.message.value;
+        var updates = {};
 
         if (name.length > 0) {
             this.refs.name.value = '';
-            this.props.onNewName(name);
+            updates.name = name;
         }
+
+        if (message.length > 0) {
+            this.refs.message.value = '';
+            updates.message = message;
+        }
+
+        this.props.onUpdates(updates);
     },
 
     render: function () {
         return (
             <form onSubmit={this.onFormSubmit}>
-                <input type="text" ref="name"/>
-                <button>Set Name</button>
+                <input type="text" ref="name" placeholder="type new name"/><br/>
+                <textarea ref="message" placeholder="type your message"></textarea><br/>
+                <button>Submit</button>
             </form>
         );
     }
@@ -59,21 +69,31 @@ var Greetter = React.createClass({
      */
     getInitialState: function () {
       return {
-        name: this.props.name
+        name: this.props.name,
+        message: this.props.message
       };
     },
 
     //responds to the form submit
-    handleNewName : function (name) {
-        this.setState({
-            name: name
-        });
+    handleUpdates : function (updates) {
+        // if(updates.hasOwnProperty('name')) {
+        //     this.setState({
+        //         name: updates.name
+        //     });
+        // }
+        // if(updates.hasOwnProperty('message')) {
+        //     this.setState({
+        //         message: updates.message
+        //     });
+        // }
+
+        this.setState(updates); //react renders the states that changes that's why you use this and not on top way
     },
 
     //YOU CAN ONLY RETURN ONE ROOT ELEMENT
     render: function  () {
         var name = this.state.name; //using state instead of props
-        var message = this.props.message; //using state instead of props
+        var message = this.state.message; //using state instead of props
 
         /*ref is a react element that can be accessed later*/
         return (
@@ -81,7 +101,7 @@ var Greetter = React.createClass({
 
                 <GreeterMessage name={name} message={message}/>
 
-                <GreeterForm onNewName={this.handleNewName}/>
+                <GreeterForm onUpdates={this.handleUpdates}/>
             </div>
         );
     }
