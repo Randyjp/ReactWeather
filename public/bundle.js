@@ -47,7 +47,7 @@
 	/**
 	 * Created by rperez on 1/14/17.
 	 */
-	var greeter = __webpack_require__(1)
+	var greeter = __webpack_require__(1);
 	greeter();
 
 /***/ },
