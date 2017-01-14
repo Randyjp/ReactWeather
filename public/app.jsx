@@ -1,18 +1,32 @@
 var GreeterMessage = React.createClass({
     render: function () {
+        var name = this.props.name;
+        var message = this.props.message;
+
         return (
             <div>
-                <h1>some h1</h1>
-                <p>some paragraph</p>
+                <h1>Hi {name}!!</h1>
+                <p>{message}!!</p>
             </div>
         );
     }
 });
 
 var GreeterForm = React.createClass({
+    onFormSubmit: function (e) {
+        e.preventDefault();
+
+        var name = this.refs.name.value;
+
+        if (name.length > 0) {
+            this.refs.name.value = '';
+            this.props.onNewName(name);
+        }
+    },
+
     render: function () {
         return (
-            <form>
+            <form onSubmit={this.onFormSubmit}>
                 <input type="text" ref="name"/>
                 <button>Set Name</button>
             </form>
@@ -50,39 +64,24 @@ var Greetter = React.createClass({
     },
 
     //responds to the form submit
-    onButtonClick : function (e) {
-        e.preventDefault(); //prevents the browser from refreshing the page
-
-        var  nameRef = this.refs.name;
-        var name = nameRef.value; //access the element from the form
-        nameRef = ''; //clears the txt field
-
-        if (typeof(name) === 'string' && name.length > 0) {
-            //re-renders the components with the new state value
-            this.setState({
-                name: name
-            });
-        }
+    handleNewName : function (name) {
+        this.setState({
+            name: name
+        });
     },
 
     //YOU CAN ONLY RETURN ONE ROOT ELEMENT
     render: function  () {
         var name = this.state.name; //using state instead of props
+        var message = this.props.message; //using state instead of props
 
         /*ref is a react element that can be accessed later*/
         return (
             <div>
-                <h1>Hello {name}!</h1>
-                <p>{message}</p>
 
-                <GreeterMessage/>
+                <GreeterMessage name={name} message={message}/>
 
-                <form onSubmit={this.onButtonClick}>
-                    <input type="text" ref="name"/>
-                    <button>Set Name</button>
-                </form>
-
-                <GreeterForm/>
+                <GreeterForm onNewName={this.handleNewName}/>
             </div>
         );
     }
