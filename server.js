@@ -10,12 +10,12 @@ const PORT = process.env.PORT || 3000;
 //only on http
 app.use(function (req, res, next) {
   //checks the protocol
-  if (req.headers['x-forwarded-proto'] === 'http') {
+  if (req.headers['x-forwarded-proto'] === 'https') {
     //if http just keep going
-    next();
+    res.redirect('http://' + req.hostname + req.url);
   } else {
     //if https, redirect to http
-    res.redirect('http://' + req.hostname + req.url);
+    next();
   }
 });
 
