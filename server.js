@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 //only on http
 app.use(function (req, res, next) {
   //checks the protocol
-  if (req.header['x-forwarded-proto'] === 'http') {
+  if (req.headers['x-forwarded-proto'] === 'http') {
     //if http just keep going
     next();
   } else {
