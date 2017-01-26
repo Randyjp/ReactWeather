@@ -12,7 +12,10 @@ var React = require('react');
 //any state. The About component above is a great example so it will get refactored
 var About = (props) => {
   return (
-    <h3>About component</h3>
+    <div>
+      <h3>About</h3>
+      <p>Welcome to about page</p>
+    </div>
   );
 };
 module.exports = About;
