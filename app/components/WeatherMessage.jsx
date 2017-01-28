@@ -12,12 +12,12 @@ var React = require('react');
 
 //destructuring in the arguments :o :o
 //same as if I was getting props as an argument and do
-//destructuring after 
+//destructuring after
 var WeatherMessage = ({temp, location}) => {
   // var {location, temp} = props;
 
   return (
-    <p>It's it {temp} in {location}!</p>
+    <h3 className="text-center">It's it {temp} in {location}!</h3>
   );
 }
 
