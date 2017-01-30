@@ -13,7 +13,7 @@ var {Link} = require('react-router');
 var About = (props) => {
   return (
     <div>
-      <div className="callout primary">
+      <div className="callout primary page-title">
         <h1 className="text-center">About</h1>
         <h3 className="subheader">Learning React</h3>
         <p className="text-justify">This website was created with the pupose of

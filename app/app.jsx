@@ -13,6 +13,10 @@ var Examples = require('Examples');
 //style! -> injects the css to the html
 require('style!css!foundation-sites/dist/css/foundation.min.css');
 $(document).foundation(); //fire-up foundation
+
+//load app costum css
+require('style!css!applicationStyles')
+
 ReactDOM.render(
 	<Router history={hasHistory}>
 		<Route path="/" component={Main}>
